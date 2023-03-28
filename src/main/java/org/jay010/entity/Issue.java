@@ -1,4 +1,4 @@
-package Entity;
+package org.jay010.entity;
 
 import java.util.Date;
 

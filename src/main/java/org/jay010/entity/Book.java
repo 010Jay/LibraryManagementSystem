@@ -1,4 +1,4 @@
-package Entity;
+package org.jay010.entity;
 
 public class Book {
 
