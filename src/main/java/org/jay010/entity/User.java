@@ -9,7 +9,7 @@ public class User {
     private String emailAddress;
 
     private String username;
-    private   String password;
+    private String password;
     private boolean admin;
 
     public User(Builder builder) {
@@ -76,6 +76,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     @Override

@@ -12,13 +12,15 @@ public class Issue {
     private Date returnDate;
     private double fine;
 
+    private static final double PENALTY_COST_PER_DAY = 5.00;
+
     public Issue(Builder builder) {
         this.userID = builder.userID;
         this.bookID = builder.bookID;
         this.issueDate = builder.issueDate;
         this.period = builder.period;
-        this.returnDate = builder.returnDate;
-        this.fine = builder.fine;
+        this.returnDate = builder.returnDate; //??
+        this.fine = builder.fine; //??
     }
 
     public int getIssueID() {
@@ -86,14 +88,29 @@ public class Issue {
                 '}';
     }
 
+    public void calculateFine(){
+        this.fine = numberOfDaysOverdue() * PENALTY_COST_PER_DAY;
+    }
+
+    // Get the number of days overdue by subtracting the period from the number of days between the issue date
+    // and the return date
+        public int numberOfDaysOverdue() {
+            int days = daysBetween(this.issueDate, this.returnDate) - this.period;
+
+            if (days < 0)
+                return 0;
+            else
+                return days;
+        }
+
         public static class Builder {
 
             private int userID;
             private int bookID;
             private Date issueDate;
             private int period;
-            private Date returnDate;
-            private double fine;
+            private Date returnDate; //??
+            private double fine; //??
 
             public Builder setUserID(int userID) {
                 this.userID = userID;
@@ -128,5 +145,10 @@ public class Issue {
             public Issue build() {
                 return new Issue(this);
             }
+        }
+
+    // Get the number of days between the issue date and the return date
+        private int daysBetween(Date d1, Date d2){
+            return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24)+1);
         }
 }
