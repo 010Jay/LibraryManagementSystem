@@ -25,7 +25,8 @@ public class DatabaseConnection {
 
     public void closeConnection() {
         try {
-            this.connect.close();
+            if(this.connect != null)
+                this.connect.close();
 
         } catch (SQLException exception) {
 

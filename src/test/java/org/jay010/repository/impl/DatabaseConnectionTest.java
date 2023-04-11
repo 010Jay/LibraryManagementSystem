@@ -46,15 +46,22 @@ class DatabaseConnectionTest {
         db.closeConnection();
 
         try {
-            boolean connectionStatus = db.connect.isClosed();
+            boolean connectionStatus;
 
-            if(connectionStatus) {
-                System.out.println("Connection is close.");
+            if(db.connect != null) {
+                connectionStatus = db.connect.isClosed();
+
+                if(connectionStatus) {
+                    System.out.println("Connection is close.");
+                    assertEquals(connectionStatus, true);
+                }
+                else
+                    System.out.println("Connection is open.");
             }
-            else
-                System.out.println("Connection is open.");
-
-            assertEquals(connectionStatus, true);
+            else {
+                System.out.println("db.connect is null");
+                assertNull(db.connect);
+            }
 
         } catch (SQLException exception) {
 

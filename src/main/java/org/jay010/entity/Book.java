@@ -9,6 +9,7 @@ public class Book {
     private double price;
 
     public Book(Builder builder) {
+        this.bookID = builder.bookID;
         this.bookName = builder.bookName;
         this.author = builder.author;
         this.genre = builder.genre;
@@ -64,10 +65,16 @@ public class Book {
 
         public static class Builder {
 
+            private int bookID;
             private String bookName;
             private String author;
             private String genre;
             private double price;
+
+            public Builder setBookID(int bookID) {
+                this.bookID = bookID;
+                return this;
+            }
 
             public Builder setBookName(String bookName) {
                 this.bookName = bookName;
