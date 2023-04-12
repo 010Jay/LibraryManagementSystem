@@ -98,6 +98,7 @@ public class User {
 
     public static class Builder {
 
+            private int userID;
             private String firstName;
             private String lastName;
             private String contactNumber;
@@ -105,8 +106,14 @@ public class User {
 
             private String username;
             private String password;
+            private boolean admin;
 
-            public Builder setFirstName(String firstName) {
+        public Builder setUserID(int userID) {
+            this.userID = userID;
+            return this;
+        }
+
+        public Builder setFirstName(String firstName) {
                 this.firstName = firstName;
                 return this;
             }
@@ -136,7 +143,12 @@ public class User {
                 return this;
             }
 
-            public User build() {
+        public Builder setAdmin(boolean admin) {
+            this.admin = admin;
+            return this;
+        }
+
+        public User build() {
                 return new User(this);
             }
         }

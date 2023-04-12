@@ -72,7 +72,7 @@ class BookRepositoryTest {
         bookRepo.create(book2);
         bookRepo.create(book3);*/
 
-        Book[] book = bookRepo.getAllBooks();
+        Book[] book = bookRepo.getAll();
 
         for(int i = 0; i < book.length; i++) {
             System.out.println(book[i].toString() + "\n");

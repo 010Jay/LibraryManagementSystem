@@ -9,6 +9,4 @@ public interface IBook extends IRepository<Book, Integer> {
     String sqlUpdate = "UPDATE book SET Name = ?, Author = ?, Genre = ?, Price = ? WHERE BookID = ";
     String sqlDelete = "DELETE FROM book WHERE BookID = ";
     String sqlReadAll = "SELECT * FROM book";
-    
-    Book[] getAllBooks();
 }

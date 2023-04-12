@@ -1,30 +1,32 @@
 package org.jay010.repository.impl;
 
-import org.jay010.entity.Book;
-import org.jay010.repository.IBook;
+import org.jay010.entity.User;
+import org.jay010.repository.IUser;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BookRepository implements IBook {
+public class UserRepository implements IUser {
 
     private DatabaseConnection db = new DatabaseConnection();
     private PreparedStatement statement;
     private ResultSet result;
 
-    public BookRepository() {}
-
     @Override
-    public Book create(Book book) {
+    public User create(User user) {
         db.openConnection();
 
         try {
             statement = db.connect.prepareStatement(sqlCreate);
 
-            statement.setString(1, book.getBookName());
-            statement.setString(2, book.getAuthor());
-            statement.setString(3, book.getGenre());
-            statement.setDouble(4, book.getPrice());
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getContactNumber());
+            statement.setString(4, user.getEmailAddress());
+            statement.setString(5, user.getUsername());
+            statement.setString(6, user.getPassword());
+            statement.setBoolean(7, user.isAdmin());
 
             statement.executeUpdate();
 
@@ -47,25 +49,27 @@ public class BookRepository implements IBook {
 
         }
 
-        return book;
+        return user;
     }
 
     @Override
-    public Book read(Integer id) {
+    public User read(Integer id) {
         db.openConnection();
-        Book book = null;
+        User user = null;
 
         try{
             statement = db.connect.prepareStatement(sqlRead + id);
             result = statement.executeQuery();
 
             result.next();
-            book = new Book.Builder()
-                    .setBookID(result.getInt(1))
-                    .setBookName(result.getString(2))
-                    .setAuthor(result.getString(3))
-                    .setGenre(result.getString(4))
-                    .setPrice(result.getDouble(5))
+            user = new User.Builder()
+                    .setFirstName(result.getString(1))
+                    .setLastName(result.getString(2))
+                    .setContactNumber(result.getString(3))
+                    .setEmailAddress(result.getString(4))
+                    .setUsername(result.getString(5))
+                    .setPassword(result.getString(6))
+                    .setAdmin(result.getBoolean(7))
                     .build();
 
         } catch (SQLException exception) {
@@ -87,21 +91,24 @@ public class BookRepository implements IBook {
             }
         }
 
-        return book;
+        return user;
     }
 
     @Override
-    public Book update(Book book) {
+    public User update(User user) {
         db.openConnection();
-        int id = book.getBookID();
+        int id = user.getUserID();
 
         try{
             statement = db.connect.prepareStatement(sqlUpdate + id);
 
-            statement.setString(1, book.getBookName());
-            statement.setString(2, book.getAuthor());
-            statement.setString(3, book.getGenre());
-            statement.setDouble(4, book.getPrice());
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getContactNumber());
+            statement.setString(4, user.getEmailAddress());
+            statement.setString(5, user.getUsername());
+            statement.setString(6, user.getPassword());
+            statement.setBoolean(7, user.isAdmin());
 
             statement.executeUpdate();
 
@@ -124,7 +131,7 @@ public class BookRepository implements IBook {
 
         }
 
-        return book;
+        return user;
     }
 
     @Override
@@ -149,10 +156,10 @@ public class BookRepository implements IBook {
     }
 
     @Override
-    public Book[] getAll() {
+    public User[] getAll() {
         db.openConnection();
         int size = getSize();
-        Book[] book = new Book[size];
+        User[] user = new User[size];
 
         try{
             statement = db.connect.prepareStatement(sqlReadAll);
@@ -160,12 +167,14 @@ public class BookRepository implements IBook {
 
             int i = 0;
             while(result.next()) {
-                book[i] = new Book.Builder()
-                        .setBookID(result.getInt(1))
-                        .setBookName(result.getString(2))
-                        .setAuthor(result.getString(3))
-                        .setGenre(result.getString(4))
-                        .setPrice(result.getDouble(5))
+                user[i] = new User.Builder()
+                        .setFirstName(result.getString(1))
+                        .setLastName(result.getString(2))
+                        .setContactNumber(result.getString(3))
+                        .setEmailAddress(result.getString(4))
+                        .setUsername(result.getString(5))
+                        .setPassword(result.getString(6))
+                        .setAdmin(result.getBoolean(7))
                         .build();
 
                 i++;
@@ -190,7 +199,7 @@ public class BookRepository implements IBook {
             }
         }
 
-        return book;
+        return user;
     }
 
     @Override
