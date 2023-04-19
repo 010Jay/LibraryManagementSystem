@@ -13,13 +13,14 @@ public class User {
     private boolean admin;
 
     public User(Builder builder) {
+        this.userID = builder.userID;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.contactNumber = builder.contactNumber;
         this.emailAddress = builder.emailAddress;
         this.username = builder.username;
         this.password = builder.password;
-        this.admin = false;
+        this.admin = builder.admin;
     }
 
     public int getUserID() {

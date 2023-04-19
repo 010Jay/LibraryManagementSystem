@@ -1,10 +1,13 @@
 package org.jay010.repository.impl;
 
 import org.jay010.entity.Book;
+import org.jay010.factory.BookFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,27 +21,14 @@ class BookRepositoryTest {
     void setUp() {
         bookRepo = new BookRepository();
 
-        book1 = new Book.Builder()
-                .setBookName("Game of Thrones")
-                .setAuthor("Jon Snow")
-                .setGenre("Drama/Supernatural")
-                .setPrice(799.99)
-                .build();
+        book1 = BookFactory.createBook(0,"Game of Thrones",
+                "Jon Snow", "Drama/Supernatural", 799.99);
 
-        book2 = new Book.Builder()
-                //.setBookID(2)
-                .setBookName("A Song of Fire and Ice")
-                .setAuthor("George R. R. Martin")
-                .setGenre("Supernatural")
-                .setPrice(899.99)
-                .build();
+        book2 = BookFactory.createBook(2,"A Song of Fire and Ice",
+                "George R. R. Martin", "Supernatural", 899.99);
 
-        book3 = new Book.Builder()
-                .setBookName("Animal Farm")
-                .setAuthor("George Orwell")
-                .setGenre("Novella")
-                .setPrice(499.99)
-                .build();
+        book3 = BookFactory.createBook(0,"Animal Farm",
+                "George Orwell", "Novella", 499.99);
     }
 
     @Test
@@ -72,10 +62,11 @@ class BookRepositoryTest {
         bookRepo.create(book2);
         bookRepo.create(book3);*/
 
-        Book[] book = bookRepo.getAll();
+        List<Book> book = bookRepo.getAll();
 
-        for(int i = 0; i < book.length; i++) {
-            System.out.println(book[i].toString() + "\n");
+        for(Book bookList : book) {
+            System.out.println(bookList.toString());
         }
+
     }
 }

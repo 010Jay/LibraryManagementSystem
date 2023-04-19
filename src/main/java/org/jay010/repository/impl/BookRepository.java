@@ -1,10 +1,13 @@
 package org.jay010.repository.impl;
 
 import org.jay010.entity.Book;
+import org.jay010.factory.BookFactory;
 import org.jay010.repository.IBook;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookRepository implements IBook {
 
@@ -60,13 +63,8 @@ public class BookRepository implements IBook {
             result = statement.executeQuery();
 
             result.next();
-            book = new Book.Builder()
-                    .setBookID(result.getInt(1))
-                    .setBookName(result.getString(2))
-                    .setAuthor(result.getString(3))
-                    .setGenre(result.getString(4))
-                    .setPrice(result.getDouble(5))
-                    .build();
+            book = BookFactory.createBook(result.getInt(1), result.getString(2),
+                    result.getString(3), result.getString(4), result.getDouble(5));
 
         } catch (SQLException exception) {
 
@@ -149,10 +147,9 @@ public class BookRepository implements IBook {
     }
 
     @Override
-    public Book[] getAll() {
+    public List<Book> getAll() {
         db.openConnection();
-        int size = getSize();
-        Book[] book = new Book[size];
+        List<Book> bookList = new ArrayList<>();
 
         try{
             statement = db.connect.prepareStatement(sqlReadAll);
@@ -160,13 +157,9 @@ public class BookRepository implements IBook {
 
             int i = 0;
             while(result.next()) {
-                book[i] = new Book.Builder()
-                        .setBookID(result.getInt(1))
-                        .setBookName(result.getString(2))
-                        .setAuthor(result.getString(3))
-                        .setGenre(result.getString(4))
-                        .setPrice(result.getDouble(5))
-                        .build();
+                Book book = BookFactory.createBook(result.getInt(1), result.getString(2),
+                        result.getString(3), result.getString(4), result.getDouble(5));
+                bookList.add(book);
 
                 i++;
             }
@@ -190,27 +183,6 @@ public class BookRepository implements IBook {
             }
         }
 
-        return book;
-    }
-
-    @Override
-    public int getSize() {
-        db.openConnection();
-        int size = 0;
-
-        try{
-            statement = db.connect.prepareStatement(sqlReadAll);
-            result = statement.executeQuery();
-
-            while(result.next()) {
-                size++;
-            }
-
-        } catch (SQLException exception) {
-
-            System.out.println("Error: " + exception.getMessage());
-        }
-
-        return size;
+        return bookList;
     }
 }

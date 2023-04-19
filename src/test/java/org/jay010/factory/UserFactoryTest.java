@@ -11,7 +11,7 @@ class UserFactoryTest {
     @BeforeEach
     void setUp() {
         user1 = UserFactory.createUser(6, "Jon", "Snow", "9884521453", "jonsnow@gmail.com",
-                "jonsnow010", "Password010");
+                "jonsnow010", "Password010", false);
     }
 
     @Test

@@ -1,11 +1,14 @@
 package org.jay010.repository.impl;
 
 import org.jay010.entity.User;
+import org.jay010.factory.UserFactory;
 import org.jay010.repository.IUser;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserRepository implements IUser {
 
@@ -62,15 +65,9 @@ public class UserRepository implements IUser {
             result = statement.executeQuery();
 
             result.next();
-            user = new User.Builder()
-                    .setFirstName(result.getString(1))
-                    .setLastName(result.getString(2))
-                    .setContactNumber(result.getString(3))
-                    .setEmailAddress(result.getString(4))
-                    .setUsername(result.getString(5))
-                    .setPassword(result.getString(6))
-                    .setAdmin(result.getBoolean(7))
-                    .build();
+            user = UserFactory.createUser(result.getInt(1), result.getString(2), result.getString(3),
+                    result.getString(4), result.getString(5), result.getString(6),
+                    result.getString(7),result.getBoolean(8));
 
         } catch (SQLException exception) {
 
@@ -156,10 +153,9 @@ public class UserRepository implements IUser {
     }
 
     @Override
-    public User[] getAll() {
+    public List<User> getAll() {
         db.openConnection();
-        int size = getSize();
-        User[] user = new User[size];
+       List<User> userList = new ArrayList<>();
 
         try{
             statement = db.connect.prepareStatement(sqlReadAll);
@@ -167,15 +163,10 @@ public class UserRepository implements IUser {
 
             int i = 0;
             while(result.next()) {
-                user[i] = new User.Builder()
-                        .setFirstName(result.getString(1))
-                        .setLastName(result.getString(2))
-                        .setContactNumber(result.getString(3))
-                        .setEmailAddress(result.getString(4))
-                        .setUsername(result.getString(5))
-                        .setPassword(result.getString(6))
-                        .setAdmin(result.getBoolean(7))
-                        .build();
+                User user = UserFactory.createUser(result.getInt(1), result.getString(2), result.getString(3),
+                        result.getString(4), result.getString(5), result.getString(6),
+                        result.getString(7),result.getBoolean(8));
+                userList.add(user);
 
                 i++;
             }
@@ -199,27 +190,6 @@ public class UserRepository implements IUser {
             }
         }
 
-        return user;
-    }
-
-    @Override
-    public int getSize() {
-        db.openConnection();
-        int size = 0;
-
-        try{
-            statement = db.connect.prepareStatement(sqlReadAll);
-            result = statement.executeQuery();
-
-            while(result.next()) {
-                size++;
-            }
-
-        } catch (SQLException exception) {
-
-            System.out.println("Error: " + exception.getMessage());
-        }
-
-        return size;
+        return userList;
     }
 }
