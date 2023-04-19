@@ -1,6 +1,5 @@
 package org.jay010.repository.impl;
 
-import org.jay010.entity.Book;
 import org.jay010.entity.User;
 import org.jay010.factory.UserFactory;
 import org.junit.jupiter.api.BeforeEach;

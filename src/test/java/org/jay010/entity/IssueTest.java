@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class IssueTest {
 
     private Issue issue1, issue2;
@@ -59,6 +61,14 @@ class IssueTest {
 
     @Test
     void testCalculateFine(){
+        issue1.calculateFine();
+        double fine1 = issue1.getFine();
+        System.out.println("Fine 1: " + fine1);
+        assertEquals(fine1, 20.0);
 
+        issue2.calculateFine();
+        double fine2 = issue2.getFine();
+        System.out.println("\nFine 2: " + fine2);
+        assertEquals(fine2, 0.0);
     }
 }

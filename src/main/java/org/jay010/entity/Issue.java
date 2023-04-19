@@ -15,6 +15,7 @@ public class Issue {
     private static final double PENALTY_COST_PER_DAY = 5.00;
 
     public Issue(Builder builder) {
+        this.issueID = builder.issueID;
         this.userID = builder.userID;
         this.bookID = builder.bookID;
         this.issueDate = builder.issueDate;
@@ -105,12 +106,18 @@ public class Issue {
 
         public static class Builder {
 
+            private int issueID;
             private int userID;
             private int bookID;
             private Date issueDate;
             private int period;
             private Date returnDate; //??
             private double fine; //??
+
+            public Builder setIssueID(int issueID) {
+                this.issueID = issueID;
+                return this;
+            }
 
             public Builder setUserID(int userID) {
                 this.userID = userID;
