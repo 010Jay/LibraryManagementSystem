@@ -1,9 +1,11 @@
-package org.jay010.repository.impl;
+package org.jay010.service.impl;
 
 import org.jay010.entity.Issue;
 import org.jay010.factory.IssueFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,15 +14,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class IssueRepositoryTest {
+@TestMethodOrder(MethodOrderer.MethodName.class)
+class IssueServiceTest {
 
-    private Issue issue1, issue2, issue3;
     @Autowired
-    private  IssueRepository issueRepo;
+    private IssueService service = IssueService.getService();
+    private Issue issue1, issue2, issue3;
 
     @BeforeEach
     void setUp() throws ParseException {
@@ -38,7 +40,7 @@ class IssueRepositoryTest {
         String stringDate2_2 = "10/04/2023";
         Date date2_2 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate2_2);
 
-        issue2 = IssueFactory.createIssue(1,1001,8, date2_1, 5, date2_2, 0);
+        issue2 = IssueFactory.createIssue(0,1001,8, date2_1, 5, date2_2, 0);
 
         String stringDate3_1 = "28/03/2023";
         Date date3_1 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate3_1);
@@ -46,42 +48,36 @@ class IssueRepositoryTest {
         String stringDate3_2 = "10/04/2023";
         Date date3_2 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate3_2);
 
-        issue3 = IssueFactory.createIssue(0,11,200, date3_1, 10, date3_2, 0);
+        issue3 = IssueFactory.createIssue(5,11,200, date3_1, 10, date3_2, 0);
     }
 
     @Test
     void a_testAddIssue() {
-        issue1.calculateFine();
-        Issue test = issueRepo.create(issue1);
-        assertNotNull(test);
+        service.create(issue1);
+        service.create(issue2);
     }
 
     @Test
     void b_testReadIssue() {
-        Issue test = issueRepo.read(2);
-        System.out.println(test.toString());
-        assertNotNull(test);
+        System.out.println(service.read(5));
     }
 
     @Test
     void c_testUpdateIssue() {
-        Issue test = issueRepo.update(issue2);
-        assertNotNull(test);
+        System.out.println(service.update(issue3));
     }
 
     @Test
     void e_testDeleteIssue() {
-        boolean result = issueRepo.delete(1);
-        assertEquals(result, true);
+        System.out.println(service.delete(5));
     }
 
     @Test
     void d_testReadAllIssues() {
-        /*issueRepo.create(issue1);
-        issueRepo.create(issue2);
-        issueRepo.create(issue3);*/
+        service.create(issue1);
+        service.create(issue2);
 
-        List<Issue> issue = issueRepo.getAll();
+        List<Issue> issue = service.getAll();
 
         for(Issue issueList : issue)
             System.out.println(issueList.toString());

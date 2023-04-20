@@ -143,10 +143,7 @@ public class UserRepository implements IUserRepository {
             statement = db.connect.prepareStatement(sqlDelete + id);
             int check = statement.executeUpdate();
 
-            if(check > 0)
-                return true;
-            else
-                return false;
+            return check > 0;
 
         } catch (SQLException exception) {
 
