@@ -2,7 +2,7 @@ package org.jay010.repository;
 
 import org.jay010.entity.Issue;
 
-public interface IIssue extends IRepository<Issue, Integer> {
+public interface IIssueRepository extends IRepository<Issue, Integer> {
 
     String sqlCreate = "INSERT INTO issue (UserID, BookID, IssueDate, " +
             "Period, ReturnDate, Fine) VALUES (?, ?, ?, ?, ?, ?)";

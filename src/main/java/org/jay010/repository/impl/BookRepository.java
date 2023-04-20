@@ -2,14 +2,14 @@ package org.jay010.repository.impl;
 
 import org.jay010.entity.Book;
 import org.jay010.factory.BookFactory;
-import org.jay010.repository.IBook;
+import org.jay010.repository.IBookRepository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookRepository implements IBook {
+public class BookRepository implements IBookRepository {
 
     private DatabaseConnection db = new DatabaseConnection();
     private PreparedStatement statement;

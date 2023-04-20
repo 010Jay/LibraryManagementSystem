@@ -2,7 +2,7 @@ package org.jay010.repository.impl;
 
 import org.jay010.entity.Issue;
 import org.jay010.factory.IssueFactory;
-import org.jay010.repository.IIssue;
+import org.jay010.repository.IIssueRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IssueRepository implements IIssue {
+public class IssueRepository implements IIssueRepository {
 
     private DatabaseConnection db = new DatabaseConnection();
     private PreparedStatement statement;
