@@ -1,17 +1,21 @@
 package org.jay010.repository.impl;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@Repository
 public class DatabaseConnection {
 
     private final String URL = "jdbc:mysql://localhost:3308/library";
     private final String username = "root";
     private  final String password = "";
     protected Connection connect;
+    private DatabaseConnection db = null;
 
-    public DatabaseConnection() {}
+
 
     public void openConnection() {
         try {

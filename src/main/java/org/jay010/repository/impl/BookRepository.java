@@ -3,12 +3,15 @@ package org.jay010.repository.impl;
 import org.jay010.entity.Book;
 import org.jay010.factory.BookFactory;
 import org.jay010.repository.IBookRepository;
+import org.springframework.stereotype.Repository;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class BookRepository implements IBookRepository {
 
     private DatabaseConnection db = new DatabaseConnection();

@@ -4,6 +4,8 @@ import org.jay010.entity.Issue;
 import org.jay010.factory.IssueFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,9 +15,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 class IssueRepositoryTest {
 
     private Issue issue1, issue2, issue3;
+    @Autowired
     private  IssueRepository issueRepo = new IssueRepository();
 
     @BeforeEach
@@ -73,9 +77,9 @@ class IssueRepositoryTest {
 
     @Test
     void d_testReadAllIssues() {
-        issueRepo.create(issue1);
+        /*issueRepo.create(issue1);
         issueRepo.create(issue2);
-        issueRepo.create(issue3);
+        issueRepo.create(issue3);*/
 
         List<Issue> issue = issueRepo.getAll();
 

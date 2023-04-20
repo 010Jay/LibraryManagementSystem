@@ -3,6 +3,7 @@ package org.jay010.repository.impl;
 import org.jay010.entity.User;
 import org.jay010.factory.UserFactory;
 import org.jay010.repository.IUserRepository;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class UserRepository implements IUserRepository {
 
     private DatabaseConnection db = new DatabaseConnection();
