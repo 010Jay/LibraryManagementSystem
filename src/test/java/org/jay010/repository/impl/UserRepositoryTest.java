@@ -19,7 +19,7 @@ class UserRepositoryTest {
 
     private User user1, user2, user3;
     @Autowired
-    private UserRepository userRepo = new UserRepository();
+    private UserRepository userRepo;
 
     @BeforeEach
     void setUp() {

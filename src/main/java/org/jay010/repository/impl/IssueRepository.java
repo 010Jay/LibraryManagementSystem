@@ -3,6 +3,7 @@ package org.jay010.repository.impl;
 import org.jay010.entity.Issue;
 import org.jay010.factory.IssueFactory;
 import org.jay010.repository.IIssueRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -14,7 +15,8 @@ import java.util.List;
 @Repository
 public class IssueRepository implements IIssueRepository {
 
-    private DatabaseConnection db = new DatabaseConnection();
+    @Autowired
+    private DatabaseConnection db;
     private PreparedStatement statement;
     private ResultSet result;
 

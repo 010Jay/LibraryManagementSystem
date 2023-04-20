@@ -23,8 +23,6 @@ class BookRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        bookRepo = new BookRepository();
-
         book1 = BookFactory.createBook(0,"Game of Thrones",
                 "Jon Snow", "Drama/Supernatural", 799.99);
 

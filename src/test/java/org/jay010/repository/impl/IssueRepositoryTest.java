@@ -20,7 +20,7 @@ class IssueRepositoryTest {
 
     private Issue issue1, issue2, issue3;
     @Autowired
-    private  IssueRepository issueRepo = new IssueRepository();
+    private  IssueRepository issueRepo;
 
     @BeforeEach
     void setUp() throws ParseException {

@@ -13,9 +13,6 @@ public class DatabaseConnection {
     private final String username = "root";
     private  final String password = "";
     protected Connection connect;
-    private DatabaseConnection db = null;
-
-
 
     public void openConnection() {
         try {

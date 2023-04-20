@@ -3,6 +3,7 @@ package org.jay010.repository.impl;
 import org.jay010.entity.Book;
 import org.jay010.factory.BookFactory;
 import org.jay010.repository.IBookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -14,11 +15,10 @@ import java.util.List;
 @Repository
 public class BookRepository implements IBookRepository {
 
-    private DatabaseConnection db = new DatabaseConnection();
+    @Autowired
+    private DatabaseConnection db;
     private PreparedStatement statement;
     private ResultSet result;
-
-    public BookRepository() {}
 
     @Override
     public Book create(Book book) {
@@ -158,13 +158,10 @@ public class BookRepository implements IBookRepository {
             statement = db.connect.prepareStatement(sqlReadAll);
             result = statement.executeQuery();
 
-            int i = 0;
             while(result.next()) {
                 Book book = BookFactory.createBook(result.getInt(1), result.getString(2),
                         result.getString(3), result.getString(4), result.getDouble(5));
                 bookList.add(book);
-
-                i++;
             }
 
         } catch (SQLException exception) {
