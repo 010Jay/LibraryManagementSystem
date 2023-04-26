@@ -8,6 +8,8 @@ public class Book {
     private String genre;
     private double price;
 
+    public Book() {}
+
     public Book(Builder builder) {
         this.bookID = builder.bookID;
         this.bookName = builder.bookName;
