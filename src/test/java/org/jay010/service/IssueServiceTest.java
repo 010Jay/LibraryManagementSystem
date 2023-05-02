@@ -1,4 +1,4 @@
-package org.jay010.service.impl;
+package org.jay010.service;
 
 import org.jay010.entity.Issue;
 import org.jay010.factory.IssueFactory;
@@ -13,8 +13,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)

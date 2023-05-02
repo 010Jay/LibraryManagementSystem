@@ -1,15 +1,15 @@
-package org.jay010.service.impl;
+package org.jay010.service;
 
 import org.jay010.entity.Issue;
+import org.jay010.generic.IGenericCRUD;
 import org.jay010.repository.impl.IssueRepository;
-import org.jay010.service.IIssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class IssueService implements IIssueService {
+public class IssueService implements IGenericCRUD<Issue, Integer> {
 
     @Autowired
     private IssueRepository repository;

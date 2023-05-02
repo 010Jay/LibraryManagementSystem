@@ -1,4 +1,4 @@
-package org.jay010.controller.impl;
+package org.jay010.controller;
 
 import org.jay010.entity.Issue;
 import org.jay010.factory.IssueFactory;

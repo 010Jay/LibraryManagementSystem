@@ -1,15 +1,15 @@
-package org.jay010.service.impl;
+package org.jay010.service;
 
 import org.jay010.entity.Book;
+import org.jay010.generic.IGenericCRUD;
 import org.jay010.repository.impl.BookRepository;
-import org.jay010.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BookService implements IBookService {
+public class BookService implements IGenericCRUD<Book, Integer> {
 
     private static BookService service = null;
     @Autowired

@@ -1,36 +1,36 @@
-package org.jay010.controller.impl;
+package org.jay010.controller;
 
-import org.jay010.controller.IController;
-import org.jay010.entity.Issue;
-import org.jay010.service.impl.IssueService;
+import org.jay010.entity.User;
+import org.jay010.generic.IGenericCRUD;
+import org.jay010.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/issue")
-public class IssueController implements IController<Issue, Integer> {
+@RequestMapping("/user")
+public class UserController implements IGenericCRUD<User, Integer> {
 
     @Autowired
-    private IssueService service;
+    private UserService service;
 
     @Override
     @PostMapping("/create")
-    public Issue create(@RequestBody Issue issue) {
-        return service.create(issue);
+    public User create(@RequestBody User user) {
+        return service.create(user);
     }
 
     @Override
     @GetMapping("/read/{id}")
-    public Issue read(@PathVariable Integer id) {
+    public User read(@PathVariable Integer id) {
         return service.read(id);
     }
 
     @Override
     @PostMapping("/update")
-    public Issue update(@RequestBody Issue issue) {
-        return service.update(issue);
+    public User update(@RequestBody User user) {
+        return service.update(user);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class IssueController implements IController<Issue, Integer> {
 
     @Override
     @GetMapping("/getAll")
-    public List<Issue> getAll() {
+    public List<User> getAll() {
         return service.getAll();
     }
 }

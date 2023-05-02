@@ -1,8 +1,9 @@
 package org.jay010.repository;
 
 import org.jay010.entity.User;
+import org.jay010.generic.IGenericCRUD;
 
-public interface IUserRepository extends IRepository<User, Integer> {
+public interface IUserRepository extends IGenericCRUD<User, Integer> {
 
     String sqlCreate = "INSERT INTO user (FirstName, LastName, ContactNumber, EmailAddress, " +
                         "Username, Password, AdminPrivilege) VALUES (?, ?, ?, ?, ?, ?, ?)";

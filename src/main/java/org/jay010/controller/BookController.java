@@ -1,8 +1,8 @@
-package org.jay010.controller.impl;
+package org.jay010.controller;
 
-import org.jay010.controller.IController;
 import org.jay010.entity.Book;
-import org.jay010.service.impl.BookService;
+import org.jay010.generic.IGenericCRUD;
+import org.jay010.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/book")
-public class BookController implements IController<Book, Integer> {
+public class BookController implements IGenericCRUD<Book, Integer> {
 
     @Autowired
     private BookService service;

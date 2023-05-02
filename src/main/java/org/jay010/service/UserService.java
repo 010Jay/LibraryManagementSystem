@@ -1,15 +1,15 @@
-package org.jay010.service.impl;
+package org.jay010.service;
 
 import org.jay010.entity.User;
+import org.jay010.generic.IGenericCRUD;
 import org.jay010.repository.impl.UserRepository;
-import org.jay010.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService implements IUserService {
+public class UserService implements IGenericCRUD<User, Integer> {
 
     @Autowired
     private UserRepository repository;
