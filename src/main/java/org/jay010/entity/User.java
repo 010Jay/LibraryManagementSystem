@@ -12,6 +12,7 @@ public class User {
     private String password;
     private boolean admin;
 
+    public User() {}
     public User(Builder builder) {
         this.userID = builder.userID;
         this.firstName = builder.firstName;

@@ -14,6 +14,7 @@ public class Issue {
 
     private static final double PENALTY_COST_PER_DAY = 5.00;
 
+    public Issue () {}
     public Issue(Builder builder) {
         this.issueID = builder.issueID;
         this.userID = builder.userID;
