@@ -21,8 +21,8 @@ public class Issue {
         this.bookID = builder.bookID;
         this.issueDate = builder.issueDate;
         this.period = builder.period;
-        this.returnDate = builder.returnDate; //??
-        this.fine = builder.fine; //??
+        this.returnDate = builder.returnDate;
+        this.fine = builder.fine;
     }
 
     public int getIssueID() {
@@ -88,8 +88,8 @@ public class Issue {
             private int bookID;
             private Date issueDate;
             private int period;
-            private Date returnDate; //??
-            private double fine; //??
+            private Date returnDate;
+            private double fine;
 
             public Builder setIssueID(int issueID) {
                 this.issueID = issueID;
