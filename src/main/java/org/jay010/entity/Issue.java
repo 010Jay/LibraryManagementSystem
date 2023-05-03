@@ -53,30 +53,6 @@ public class Issue {
         return fine;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public void setBookID(int bookID) {
-        this.bookID = bookID;
-    }
-
-    public void setIssueDate(Date issueDate) {
-        this.issueDate = issueDate;
-    }
-
-    public void setPeriod(int period) {
-        this.period = period;
-    }
-
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
-    }
-
-    public void setFine(double fine) {
-        this.fine = fine;
-    }
-
     @Override
     public String toString() {
         return "Issue{" +
