@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/issue")
+@CrossOrigin("*")
 public class IssueController implements IGenericCRUD<Issue, Integer> {
 
     @Autowired

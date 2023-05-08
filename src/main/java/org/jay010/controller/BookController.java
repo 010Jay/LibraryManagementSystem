@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/book")
+@CrossOrigin("*")
 public class BookController implements IGenericCRUD<Book, Integer> {
 
     @Autowired
