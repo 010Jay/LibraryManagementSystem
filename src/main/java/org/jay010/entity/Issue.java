@@ -72,7 +72,7 @@ public class Issue {
 
     // Get the number of days overdue by subtracting the period from the number of days between the issue date
     // and the return date
-        public int numberOfDaysOverdue() {
+        protected int numberOfDaysOverdue() {
             int days = daysBetween(this.issueDate, this.returnDate) - this.period;
 
             if (days < 0)

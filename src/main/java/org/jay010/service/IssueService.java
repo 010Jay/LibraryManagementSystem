@@ -34,7 +34,11 @@ public class IssueService implements IGenericCRUD<Issue, Integer> {
 
     @Override
     public Issue update(Issue issue) {
-        return repository.update(issue);
+        return null;
+    }
+
+    public Issue update(Issue issue, Boolean calculateFine) {
+        return repository.update(issue, calculateFine);
     }
 
     @Override

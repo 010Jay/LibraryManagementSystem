@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class IssueServiceTest {
@@ -32,21 +34,21 @@ class IssueServiceTest {
 
         issue1 = IssueFactory.createIssue(0,1006,7, date1_1, 10, date1_2, 0);
 
-        String stringDate2_1 = "5/04/2023";
+        String stringDate2_1 = "4/03/2024";
         Date date2_1 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate2_1);
 
-        String stringDate2_2 = "10/04/2023";
+        String stringDate2_2 = "13/03/2024";
         Date date2_2 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate2_2);
 
-        issue2 = IssueFactory.createIssue(0,1001,8, date2_1, 5, date2_2, 0);
+        issue2 = IssueFactory.createIssue(4,1001,8, date2_1, 5, date2_2, 0);
 
-        String stringDate3_1 = "28/03/2023";
+        String stringDate3_1 = "4/03/2024";
         Date date3_1 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate3_1);
 
-        String stringDate3_2 = "10/04/2023";
+        String stringDate3_2 = "13/03/2024";
         Date date3_2 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate3_2);
 
-        issue3 = IssueFactory.createIssue(5,11,200, date3_1, 10, date3_2, 0);
+        issue3 = IssueFactory.createIssue(5,11,200, date3_1, 5, date3_2, 0);
     }
 
     @Test
@@ -66,7 +68,7 @@ class IssueServiceTest {
     }
 
     @Test
-    void e_testDeleteIssue() {
+    void f_testDeleteIssue() {
         System.out.println(service.delete(5));
     }
 
@@ -79,5 +81,18 @@ class IssueServiceTest {
 
         for(Issue issueList : issue)
             System.out.println(issueList.toString());
+    }
+
+    @Test
+    void e_testCalculateFine() {
+        // CalculateFine - true
+            service.update(issue2, true);
+            System.out.println("Calculate fine: " + issue2.getFine());
+            assertEquals(issue2.getFine(), 25.0);
+
+        // CalculateFine - false
+            service.update(issue3, false);
+            System.out.println("\n\nDon't calculate fine: " + issue3.getFine());
+            assertEquals(issue3.getFine(), 0.0);
     }
 }

@@ -96,41 +96,52 @@ public class IssueRepository implements IIssueRepository {
 
     @Override
     public Issue update(Issue issue) {
-        db.openConnection();
-        int id = issue.getIssueID();
+        return null;
+    }
 
-        try{
-            statement = db.connect.prepareStatement(sqlUpdate + id);
+    public Issue update(Issue issue, Boolean calculateFine) {
+        // Calculate fine based on if the value calculateFine is true
+            if(calculateFine) {
+                if(issue.getIssueDate() != null && issue.getReturnDate() != null && issue.getPeriod() > 0) {
+                    issue.calculateFine();
+                }
+            }
+        //------------------------------------------------------------------------------------------------------
+            db.openConnection();
+            int id = issue.getIssueID();
 
-            statement.setInt(1, issue.getUserID());
-            statement.setInt(2, issue.getBookID());
-            statement.setDate(3, new java.sql.Date(issue.getIssueDate().getTime()));
-            statement.setInt(4, issue.getPeriod());
-            statement.setDate(5,  new java.sql.Date(issue.getReturnDate().getTime()));
-            statement.setDouble(6, issue.getFine());
+            try{
+                statement = db.connect.prepareStatement(sqlUpdate + id);
 
-            statement.executeUpdate();
+                statement.setInt(1, issue.getUserID());
+                statement.setInt(2, issue.getBookID());
+                statement.setDate(3, new java.sql.Date(issue.getIssueDate().getTime()));
+                statement.setInt(4, issue.getPeriod());
+                statement.setDate(5,  new java.sql.Date(issue.getReturnDate().getTime()));
+                statement.setDouble(6, issue.getFine());
 
-        } catch (SQLException exception) {
-
-            System.out.println("Error: " + exception.getMessage());
-        } finally {
-
-            try {
-                if(statement != null)
-                    statement.close();
-
-                if(db.connect != null)
-                    db.closeConnection();
+                statement.executeUpdate();
 
             } catch (SQLException exception) {
 
                 System.out.println("Error: " + exception.getMessage());
+            } finally {
+
+                try {
+                    if(statement != null)
+                        statement.close();
+
+                    if(db.connect != null)
+                        db.closeConnection();
+
+                } catch (SQLException exception) {
+
+                    System.out.println("Error: " + exception.getMessage());
+                }
+
             }
 
-        }
-
-        return issue;
+            return issue;
     }
 
     @Override

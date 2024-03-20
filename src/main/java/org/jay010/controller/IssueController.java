@@ -29,9 +29,13 @@ public class IssueController implements IGenericCRUD<Issue, Integer> {
     }
 
     @Override
+    public Issue update(Issue issue) {
+        return null;
+    }
+
     @PostMapping("/update")
-    public Issue update(@RequestBody Issue issue) {
-        return service.update(issue);
+    public Issue update(@RequestBody Issue issue, @RequestParam Boolean calculateFine) {
+        return service.update(issue, calculateFine);
     }
 
     @Override
