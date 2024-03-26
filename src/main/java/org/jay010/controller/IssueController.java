@@ -34,7 +34,7 @@ public class IssueController implements IGenericCRUD<Issue, Integer> {
     }
 
     @PostMapping("/update")
-    public Issue update(@RequestBody Issue issue, @RequestParam Boolean calculateFine) {
+    public Issue update(@RequestBody Issue issue, @RequestParam("calculateFine") Boolean calculateFine) {
         return service.update(issue, calculateFine);
     }
 
